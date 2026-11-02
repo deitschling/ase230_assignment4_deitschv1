@@ -18,7 +18,9 @@ require_once __DIR__ . '/includes/auth.php';
  * usually begins a different session?
  */
 
-$_SESSION['lab_visits'] = 0; // TODO 0 — replace this line
+//$_SESSION['lab_visits'] = 0; // TODO 0 — replace this line
+$_SESSION['lab_visits'] = ($_SESSION['lab_visits'] ?? 0) + 1;   // this starts either as the amount of times the site has been visited OR zero, and then it increments one.
+// this works because it accounts for this being the nth time someone has visited this site or the first and will adjust accordingly
 
 ?>
 <!DOCTYPE html>
