@@ -16,6 +16,10 @@ require_once __DIR__ . '/includes/auth.php';
  * Question to think about:
  * Why does the new tab continue the count while the private window
  * usually begins a different session?
+ * 
+ * A new tab continues the count because the browser has cookies saved linking it to the previous session data to contunue the session from the prior tab.
+ * On the flip side, the incognito browser window will have its own set of cookies and session data and then detroy it upon leaving because the point of the 
+ * incognito browser is to limit tracking across the web-- including not storing cookies.
  */
 
 //$_SESSION['lab_visits'] = 0; // TODO 0 — replace this line
