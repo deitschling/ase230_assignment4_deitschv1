@@ -11,13 +11,13 @@ require_once __DIR__ . '/includes/auth.php';
  * 3. Redirect to login.php.
  */
 
-http_response_code(501);
-echo 'Logout is not implemented yet.';
+//http_response_code(501);
+//echo 'Logout is not implemented yet.';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
     http_response_code(405);
     echo "Not a vaild request method."
-    header('Location: login.php');
+    //header('Location: login.php');
     exit;
 }
 logoutUser($user);
