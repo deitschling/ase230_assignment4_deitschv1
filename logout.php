@@ -17,6 +17,7 @@ echo 'Logout is not implemented yet.';
 if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
     http_response_code(405);
     echo "Not a vaild request method."
+    header('Location: login.php');
     exit;
 }
 logoutUser($user);
