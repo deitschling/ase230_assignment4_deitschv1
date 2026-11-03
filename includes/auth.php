@@ -98,7 +98,7 @@ function requireRole(string $requiredRole): void
      * Authorization asks "Are you allowed to do this?"
      */
 
-    if (!isset($_SESSION['user'])){
+    if (!isLoggedIn()){
         requireLogin();
     }
     if (currentUser()['role'] !== $requiredRole){
@@ -149,4 +149,11 @@ function logoutUser(): void
      *
      * Do not merely redirect and leave the authenticated session alive.
      */
+
+    session_unset();
+    //expire the cookie
+    setcookie(session_name(), '', time() - 4300. '/');
+    session_destroy();
+    header('Location: login.php');
+    exit;
 }
