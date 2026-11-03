@@ -55,8 +55,8 @@ function loginUser(array $user): void
         'id' => $user['id'],
         'name' => $user['name'],
         'email' => $user['email'],
-        'role'
-    ]
+        'role' => $user['role']
+    ];
 }
 
 function requireLogin(): void
