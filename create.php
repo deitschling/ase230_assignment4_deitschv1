@@ -72,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              * Store a short success message BEFORE redirecting.
              * The index page already calls getFlash().
              */
+            setFlash('Ticket created successfully.');
             header('Location: index.php');
             exit;
         }
