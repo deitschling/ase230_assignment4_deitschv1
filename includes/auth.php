@@ -97,6 +97,16 @@ function requireRole(string $requiredRole): void
      * Authentication asks "Who are you?"
      * Authorization asks "Are you allowed to do this?"
      */
+
+    if (!isset($_SESSION['user'])){
+        requireLogin();
+    }
+    if (currentUser()['role'] !== $requiredRole){
+        http_response_code(403);
+        echo "Forbidden: You do not have permission access this page.";
+        exit;
+    }
+
 }
 
 function setFlash(string $message): void
@@ -107,6 +117,8 @@ function setFlash(string $message): void
      * Flash messages are useful because POST handlers normally redirect.
      * The message must survive the redirect, but should appear only once.
      */
+
+    
 }
 
 function getFlash(): ?string
