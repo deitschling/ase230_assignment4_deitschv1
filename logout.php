@@ -16,10 +16,10 @@ require_once __DIR__ . '/includes/auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
     http_response_code(405);
-    echo "Not a vaild request method."
-    //header('Location: login.php');
+    header('Allow: POST');
+    echo "Not a valid request method.";
     exit;
 }
-logoutUser($user);
+logoutUser();
 header('Location: login.php');
 exit;
