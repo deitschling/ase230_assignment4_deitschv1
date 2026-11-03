@@ -118,7 +118,8 @@ function setFlash(string $message): void
      * The message must survive the redirect, but should appear only once.
      */
 
-    
+    $_SESSION['flash'] = $message;
+
 }
 
 function getFlash(): ?string
@@ -129,7 +130,11 @@ function getFlash(): ?string
      * Returning the message without removing it would make it appear
      * on every future page request.
      */
-    return null;
+    //return null;
+
+    $message = $_SESSION['flash'] ?? null;
+    unset($_SESSION['flash']);
+    return $message;
 }
 
 function logoutUser(): void
