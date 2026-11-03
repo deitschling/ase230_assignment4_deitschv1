@@ -74,7 +74,7 @@ function requireLogin(): void
      * The SERVER must reject/redirect unauthorized requests.
      */
 
-    if (!isset($_SESSION['user']['id'])){
+    if (!isLoggedIn()){
         $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
         header('Location: login.php');
         exit;
@@ -103,7 +103,7 @@ function requireRole(string $requiredRole): void
     }
     if (currentUser()['role'] !== $requiredRole){
         http_response_code(403);
-        echo "Forbidden: You do not have permission access this page.";
+        echo "Forbidden: You do not have permission to access this page.";
         exit;
     }
 
@@ -152,7 +152,7 @@ function logoutUser(): void
 
     session_unset();
     //expire the cookie
-    setcookie(session_name(), '', time() - 4300. '/');
+    setcookie(session_name(), '', time() - 4300, '/');
     session_destroy();
     header('Location: login.php');
     exit;
