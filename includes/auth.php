@@ -49,9 +49,9 @@ function loginUser(array $user): void
     //     'email' => ...,
     //     'role' => ...
     // ];
-    session_regenerate_id(true);
+    session_regenerate_id(true);    //this satisfies 1 by regenerating the session id
 
-    $_SESSION['user'] = [
+    $_SESSION['user'] = [   //this satifies 2 by saving only the necessary information
         'id' => $user['id'],
         'name' => $user['name'],
         'email' => $user['email'],
@@ -73,6 +73,13 @@ function requireLogin(): void
      * Hiding a navigation link is NOT access control.
      * The SERVER must reject/redirect unauthorized requests.
      */
+
+    if (!isset($_SESSION['user']['id'])){
+        $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
+        header('Location: login.php');
+        exit;
+    }
+
 }
 
 function requireRole(string $requiredRole): void
