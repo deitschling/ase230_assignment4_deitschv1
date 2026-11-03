@@ -49,6 +49,14 @@ function loginUser(array $user): void
     //     'email' => ...,
     //     'role' => ...
     // ];
+    session_regenerate_id(true);
+
+    $_SESSION['user'] = [
+        'id' => $user['id'],
+        'name' => $user['name'],
+        'email' => $user['email'],
+        'role'
+    ]
 }
 
 function requireLogin(): void
