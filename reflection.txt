@@ -1,0 +1,20 @@
+What information connects a browser request to a PHP session?
+The Session ID in the session cookie which is stored on the user's browser. PHP then uses the stored session data linked to that session ID to remember what was saved in the session
+and allow users to stay signed in on multiple tabs at once.
+
+Why does PHP use password_verify() instead of decrypting stored passwords?
+PHP uses password_verify() rather than decrypting stored passwords purely for security purposes. As a security baseline, most sites will not store passwords in plain text- only hashed format.
+This ensures that, even if attackers got their hands on a stored password file / database, they would be unable to read the passwords since hashing is one way. If PHP were to want to compare
+the original, non-encrypted versions, that would mean that they would have to store a plain text version of the password somewhere within the database- which is much too risky.
+
+Why is hiding the status-update button insufficient authorization?
+Users can still forge a post request for the button even if the attribute is hidden on the page. The only way to really prevent them from utilizing it would be to enforce server-side
+authorization on whether or not the user is authorized for that sort of an action.
+
+Why should the authenticated user's identity come from the session rather than a form field?
+Form fields can be directly manipulated by the user while the session data (like $_SESSION['user']['id']) cannot be changed by the user as it is stored on the server. Since the session data
+has better protections in place, the server should rely on that for auhentication.
+
+What did the session counter or flash-message exercise reveal about requests that was not obvious before?
+The session counter revealed to me that requests for an authenticated and authorized user can still be carried out in multiple browsers, but the specific sessions will depend on the 
+given session cookie.
